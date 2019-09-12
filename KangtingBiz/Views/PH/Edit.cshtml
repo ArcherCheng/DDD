@@ -1,0 +1,53 @@
+﻿@model KangtingBiz.Domain.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h3>重設庫存量</h3>
+<div>
+    <div>
+        <div>
+            <label>   @Html.DisplayNameFor(model => model.EntityId)</label>
+            <span>
+                @Html.DisplayFor(model => model.EntityId)
+            </span>
+        </div>
+
+        <div>
+            <label>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </label>
+            <span>
+                @Html.DisplayFor(model => model.ProductName)
+            </span>
+        </div>
+        <div>
+            <label>
+                @Html.DisplayNameFor(model => model.ProductHolding.Quantity)
+            </label>
+            <span>
+                @Html.DisplayFor(model => model.ProductHolding.Quantity)
+            </span>
+        </div>
+        <div>
+            <label>
+                @Html.DisplayNameFor(model => model.ProductHolding.ReorderLevel)
+            </label>
+            <span>
+                @Html.DisplayFor(model => model.ProductHolding.ReorderLevel)
+            </span>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div><label>調整庫存量</label> <input type="text" id="quantity" name="quantity" />   </div>
+            <div class="form-actions no-color">
+                <input type="submit" value="重設庫存量" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index", "Product")
+            </div>
+        }
+    </div>
+</div>

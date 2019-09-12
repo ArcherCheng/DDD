@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76404FD1-DB9A-4F26-BEF6-FFD3C347C482}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KangtingBiz.Domain</RootNamespace>
+    <AssemblyName>KangtingBiz.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BizValidation\Entities\CategoryValidateSpec.cs" />
+    <Compile Include="BizValidation\Entities\CustomerValidateSpec.cs" />
+    <Compile Include="BizValidation\Entities\IValidateSpec.cs" />
+    <Compile Include="BizValidation\Entities\OrderLineValidateSpec.cs" />
+    <Compile Include="BizValidation\Entities\OrderValidateSpec.cs" />
+    <Compile Include="BizValidation\Entities\ProductValidateSpec.cs" />
+    <Compile Include="BizValidation\Validation.cs" />
+    <Compile Include="BizValidation\ValidationRule.cs" />
+    <Compile Include="Models\AddressInfo.cs" />
+    <Compile Include="Models\Base\EntityAggregateRootBase.cs" />
+    <Compile Include="Models\Base\EntityBase.cs" />
+    <Compile Include="Models\Base\IAggregateRoot.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderLine.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductHolding.cs" />
+    <Compile Include="Models\ProductTransaction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ICategoryRepository.cs" />
+    <Compile Include="Repository\ICustomerRepository.cs" />
+    <Compile Include="Repository\IOrderRepository.cs" />
+    <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\IUnitOfWorkRepository.cs" />
+    <Compile Include="Service\Base\DomainService.cs" />
+    <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\CustomerService.cs" />
+    <Compile Include="Service\ICategoryService.cs" />
+    <Compile Include="Service\ICustomerService.cs" />
+    <Compile Include="Service\IOrderService.cs" />
+    <Compile Include="Service\IProductService.cs" />
+    <Compile Include="Service\Base\IService.cs" />
+    <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\ProdcutService.cs" />
+    <Compile Include="Service\ProductEditService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Models\CDKangtingBiz.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

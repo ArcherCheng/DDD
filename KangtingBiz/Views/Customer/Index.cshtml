@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KangtingBiz.Domain.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<header>
+    <h2>客戶資料</h2>
+    <div style="margin:0.86em;overflow:hidden;">
+        <div style="float:right;" class="edit-area">
+            @Html.ActionLink("建立新客戶", "Create", null, new { @class = "k-button" })
+        </div>
+        <div style="float:left;">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <div>
+                <label>客戶名稱：</label><input type="text" name="SearchName" /><input type="submit" value="查詢" />
+            </div>              
+
+            }
+        </div>
+    </div>
+</header>
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.EntityId)</th>
+        <th>@Html.DisplayNameFor(m => m.CustomerName)</th>
+        <th>@Html.DisplayNameFor(m => m.Email)</th>
+        <th></th>
+    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(field => item.EntityId)
+        </td>
+        <td>
+            @Html.DisplayFor(field => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(field => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = item.EntityId }) |
+            @Html.ActionLink("檢視", "Details", new { id = item.EntityId }) )
+        </td>
+    </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4">
+                <p style="text-align:center;"><b> 無任何相關商品 </b></p>
+            </td>
+        </tr>
+    }
+</table>

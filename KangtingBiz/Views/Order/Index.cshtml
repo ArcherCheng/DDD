@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KangtingBiz.Domain.Models.Order>
+@{
+    ViewBag.Title = "Index";
+}
+<header>
+    <h2>訂單維護</h2>
+    <div style="margin:0.86em;overflow:hidden;">
+        <div style="float:right;" class="edit-area">
+            @Html.ActionLink("建立新訂單", "Create", null, new { @class = "k-button" })
+        </div>
+        <div style="float:left;">
+            @using (Html.BeginForm())
+            {
+            <div>
+                <label>訂單編號：</label><input type="text" name="no" /> <input type="submit" value="查詢" />
+            </div>               
+            }
+        </div>
+    </div>
+</header>
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.EntityId)</th>
+        <th>@Html.DisplayNameFor(m => m.OrderNO)</th>
+        <th>@Html.DisplayNameFor(m => m.Customer.CustomerName)</th>
+        <th>@Html.DisplayNameFor(m => m.OrderDate)</th>
+        <th></th>
+    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(field => item.EntityId)
+        </td>
+        <td>
+            @Html.DisplayFor(field => item.OrderNO)
+        </td>
+        <td>
+            @Html.DisplayFor(field => item.Customer.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(field => item.OrderDate)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = item.EntityId })
+        </td>
+    </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4">
+                <p style="text-align:center;"><b> 無任何相關商品 </b></p>
+            </td>
+        </tr>
+    }
+</table>
+

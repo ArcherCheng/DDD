@@ -1,0 +1,44 @@
+﻿@model KangtingBiz.Domain.Models.Category
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.EntityId)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.EntityId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.CategoryName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.CategoryName)
+    </dd>
+</dl>
+
+<div>
+
+    @using (Html.BeginForm("Delete", "Category"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("removeid", Model.EntityId)
+        <div class="form-actions no-color">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.EntityId })
+            <input id="deletebutton" type="submit" value="刪除" 　 />
+        </div>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    document.getElementById("deletebutton").onclick = function () {
+        if (!confirm('資料刪除後將無法回覆，確認刪除此筆資料？')) {
+            return false;
+        }
+    };
+</script>

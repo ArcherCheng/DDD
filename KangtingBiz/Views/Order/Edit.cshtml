@@ -1,0 +1,138 @@
+﻿@model KangtingBiz.Domain.Models.Order
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div style="overflow:hidden;">
+    <div id="OrderHeader-button" style="float:left;padding:1em;">
+        <h2>編輯訂單項目</h2>
+    </div>
+    <div id="OrderHeader-button" style="float:right;padding:1em;">
+        @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "okform" }))
+        {
+            @Html.HiddenFor(model => model.EntityId)
+            <input type="submit" value="確認訂單" class="k-button bg-maroon" />
+            @Html.ActionLink("刪除", "DeleteConfirmed", new {id=Model.EntityId }, new { @class = "k-button bg-darkblue", @id = "cancellink" })
+            @Html.ActionLink("回訂單列表", "Index", null, new { @class = "k-button" })
+        }
+    </div>
+</div>
+<div style="padding:1em;">
+    @Html.ValidationSummary(true, "")
+
+    <div id="OrderHeader" style="overflow:hidden;border:1px dotted gray;padding:1em;">
+        <div id="OrderHeader-info" style="float:left;">
+            <div>
+                <label>訂單編號</label>    @Html.DisplayFor(model => model.OrderNO)
+            </div>
+            <div>
+                <label>訂購客戶</label>   @Html.DisplayFor(model => model.Customer.CustomerName)
+            </div>
+            <div>
+                <label>訂購日期</label>  @Html.DisplayFor(model => model.OrderDate)
+            </div>
+        </div>
+        <div id="OrderHeader-info-address" style="float:right;width:50%;">
+            <div>
+                <label>郵遞區號</label>    @Html.DisplayFor(model => model.Address.PostalCode)
+            </div>
+            <div>
+                <label>配送縣市</label>    @Html.DisplayFor(model => model.Address.City)
+            </div>
+            <div>
+                <label>配送地區</label>   @Html.DisplayFor(model => model.Address.Dist)
+            </div>
+            <div>
+                <label>配送地址</label>  @Html.DisplayFor(model => model.Address.AddressLine)
+            </div>
+        </div>
+    </div>
+    <div id="OrderLines" style="padding:1em;">
+        <div>
+            <label><b>訂單明細</b></label>
+        </div>
+        <div style="background-color:#f2f5fd;">
+            <div id="OrderLine-New" style="padding:1em;overflow:hidden;">
+                @using (Html.BeginForm("CreateOrderLine", "Order", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("OrderID", Model.EntityId)
+                    <div style="float:left;">
+                        <div style="display:inline-block;"><label>商品</label>@Html.TextBox("ProductID")</div>
+                        <div style="display:inline-block;"><label>數量</label>@Html.TextBox("Quantity", null, new { @style = "width:20px;" })</div>
+                    </div>
+                    <div style="display:inline-block;float:right;">
+                        <input type="submit" value="新增訂單商品" class="k-button" />
+                    </div>
+                }
+            </div>
+            <div id="OrderLine-List" style="padding:1em;">
+                <table style="width:100%;">
+                    <tr>
+                        <th>項目編號</th>
+                        <th>商品編號</th>
+                        <th>商品名稱</th>
+                        <th>單價</th>
+                        <th>數量
+                        </th>
+                        <th></th>
+                    </tr>
+                    @if (Model != null && Model.OrderLines.Count() > 0)
+                    {
+                        var cid = 0;
+                        foreach (var line in Model.OrderLines)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(field => line.EntityId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(field => line.ProductID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(field => line.Product.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(field => line.UnitPrice)
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("EditOrderLine", "Order", FormMethod.Post))
+                                    {
+                                        cid++; 
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("OrderID", Model.EntityId,new {@id = "orderid-"+cid})
+                                        @Html.Hidden("OrderLineID", line.EntityId, new { @id = "orderlineid-" + cid })
+                                        @Html.TextBox("quantity",line.Quantity, 
+                                       new { @id = "quantity-" + cid,@class="orderline-quantity-tb" })
+                                        <input type="submit" value="修改確認" />
+                                    }
+                                </td>
+                                <td>
+                                    @Html.ActionLink("刪除", "RemoveOrderLine", new { id = Model.EntityId, orderlineid = line.EntityId })
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">
+                                <p style="text-align:center;"><b> 尚無任何訂購商品 </b></p>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("okform").onsubmit = function () {
+        var b = confirm("訂單確認後將無法修改明細，且將更新庫存，請確認 !");
+        return b;
+    }
+    document.getElementById("cancellink").onclick = function () {
+        var b = confirm("訂單作廢後將無法回覆，是否請確認 ?");
+        return b;
+    }
+</script>

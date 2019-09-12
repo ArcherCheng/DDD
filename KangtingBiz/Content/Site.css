@@ -1,0 +1,134 @@
+﻿body, table, div, p, form, h1, h2, h3, input, span, a {
+    padding: 0;
+    margin: 0;
+}
+
+body, input {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif,'新細明體';
+    font-size: 1em;
+}
+
+input, textarea {
+    border: 0.5px solid lightgray;
+    padding: 0 0.2em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border-bottom: 1px solid lightgray;
+    padding: 2px 32px 2px 4px;
+}
+
+th {
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    background: #e5e5e5;
+    color: black;
+    padding: 4px 32px 4px 4px;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: royalblue;
+}
+
+.k-button {
+    margin: 0 0.16em;
+    padding: 0.2em 1em;
+    background-color: #6687e7;
+    color: #ffffff;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 0;
+    font-family: Arial, sans-serif,'新細明體';
+    display: inline-block;
+    font-size: 1em;
+}
+
+    .k-button:hover {
+        background-color: #4169e1;
+    }
+
+.main-wrapper {
+    width: 1010px;
+    margin: auto;
+}
+
+#main-header {
+    background-color: #ecf0fc;
+    color: royalblue;
+    padding: 1em 0.36em 0.2em 0.5em;
+    font-size: 2em;
+}
+
+.menu-wrapper {
+    overflow: hidden;
+    padding: 0.5em 0.36em;
+}
+
+.main-header-menu {
+    display: inline-block;
+    padding: 0.36em 1em;
+    border: 1px solid royalblue;
+    color: royalblue;
+    font-size: 16px;
+}
+
+label {
+    padding: 0 0.5em 0 1em;
+}
+
+.details-Wrapper {
+    padding: 2em;
+}
+
+.field-Wrapper {
+    padding: 0.68em;
+    color: #666666;
+}
+
+    .field-Wrapper div {
+        padding: 0.36em 0;
+    }
+
+.edit-area {
+    padding: 0.4em;
+}
+
+/*field-style*/
+.field-price {
+    width: 10em;
+    text-align: right;
+}
+
+.field-vmsg {
+    color: #800000;
+}
+
+
+/* COLOER */
+.bg-royalblue {
+    background-color: royalblue;
+}
+
+.bg-maroon {
+    background-color: maroon;
+}
+
+.bg-darkblue {
+    background-color: #203470;
+}
+
+
+
+/* MODULE */
+.orderline-quantity-tb {
+    width: 36px;
+    text-align: right;
+}

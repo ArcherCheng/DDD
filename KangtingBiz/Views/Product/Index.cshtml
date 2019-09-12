@@ -1,0 +1,68 @@
+﻿@model IEnumerable<KangtingBiz.Application.DTOS.SearchProductResponse>
+@{
+    ViewBag.Title = "Index";
+}
+<header>
+    <h2>商品維護</h2>
+    <div style="margin:0.86em;overflow:hidden;">
+        <div style="float:right;" class="edit-area">
+            @Html.ActionLink("建立新商品", "Create", null, new { @class = "k-button" })
+            @Html.ActionLink("庫存管理", "Index", "PH", null, new { @class = "k-button" })
+            @Html.ActionLink("管理分類", "Index", "Category", null, new { @class = "k-button" })
+        </div>
+        <div style="float:left;">
+            @using (Html.BeginForm())
+            {
+                <div>
+                    <label>商品編號：</label><input type="text" name="SearchID" />
+                </div>
+                <div>
+                    <label>商品名稱：</label><input type="text" name="SearchName" /> <input type="submit" value="查詢" />
+                </div>
+               
+            }
+        </div>
+    </div>
+</header>
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(product => product.ProductID)</th>
+        <th>@Html.DisplayNameFor(product => product.ProductName)</th>
+        <th>@Html.DisplayNameFor(product => product.SalePrice)</th>
+        <th>@Html.DisplayNameFor(product => product.Quantity)</th>
+        <th></th>
+    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var product in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(field => product.ProductID)
+        </td>
+        <td>
+            @Html.DisplayFor(field => product.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(field => product.SalePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(field => product.Quantity)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id = product.ProductID }) |
+            @Html.ActionLink("檢視", "Details", new { id = product.ProductID }) |
+            @Html.ActionLink("重設庫存量", "Edit", "PH", new { id = product.ProductID },null)</td>
+
+    </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4">
+                <p style="text-align:center;"><b> 無任何相關商品 </b></p>
+            </td>
+        </tr>
+    }
+</table>

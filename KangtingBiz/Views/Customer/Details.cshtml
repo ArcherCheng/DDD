@@ -1,0 +1,60 @@
+﻿@model KangtingBiz.Domain.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.CustomerName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.CustomerName)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Email)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Email)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.PhoneNumber)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </dd>
+    <dt>
+        <span>地址資訊</span>
+    </dt>
+    <dd style="padding:6px;border:1px dotted gray; ">
+        <div>
+            @Html.DisplayFor(model => model.Address.City)<br />
+            @Html.DisplayFor(model => model.Address.Dist)<br />
+            @Html.DisplayFor(model => model.Address.AddressLine)
+        </div>
+    </dd>
+</dl>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EntityId }) |
+    @using (Html.BeginForm("Delete", "Customer"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("removeid", Model.EntityId)
+        <div class="form-actions no-color">
+            <input id="deletebutton" type="submit" value="刪除" 　 />
+
+        </div>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    document.getElementById("deletebutton").onclick = function () {
+        if (!confirm('資料刪除後將無法回覆，確認刪除此筆資料？')) {
+            return false;
+        }
+    };
+</script>

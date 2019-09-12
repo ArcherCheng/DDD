@@ -1,0 +1,79 @@
+﻿@model KangtingBiz.Domain.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div>
+    @Html.ValidationSummary()
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>建立新客戶</h4>
+    <hr />
+    @Html.ValidationSummary(true, "")
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerName)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CustomerName)
+            @Html.ValidationMessageFor(model => model.CustomerName, "")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PhoneNumber)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email, "")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address.City)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address.City)
+            @Html.ValidationMessageFor(model => model.Address.City, "")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address.Dist)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address.Dist)
+            @Html.ValidationMessageFor(model => model.Address.Dist, "")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address.AddressLine)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address.AddressLine)
+            @Html.ValidationMessageFor(model => model.Address.AddressLine, "")
+        </div>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Address.PostalCode)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address.PostalCode)
+            @Html.ValidationMessageFor(model => model.Address.PostalCode, "")
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="新增客戶" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("返回分類清單", "Index")
+</div>
+
